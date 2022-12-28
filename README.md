@@ -77,7 +77,7 @@ class MainActivity : AppCompatActivity() {
 
 # 常见问题
 
-1. 为什么我在项目中使用时无法识别对应的尺寸,无法以R.dimen.sp_10方式使用
+1. 为什么我在项目中使用时无法识别对应的尺寸,无法以R.dimen.sp_10方式使用  
    这是因为在高版本APG中默认增加了配置,会为每个库文件生成R文件,如果设置为true,就需要指定包名com.pdlbox.dimensutil.R.dimen.sp_10,如果想以R.dimen.sp_10方式使用的话,需要更改gradle.properties中以下配置为false
 ```
 # Enables namespacing of each library's R class so that its R class includes only the
