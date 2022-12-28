@@ -1,9 +1,8 @@
-# 潘多拉-工具库(已加入反996工作制开源协议)
+# 潘多拉-尺寸库
 
-开发一套纯粹的工具库
+可以直接使用各种适配尺寸
 
-[![](https://jitpack.io/v/com.gitee.clbDream/pdl-box_tools.svg)](https://jitpack.io/#com.gitee.clbDream/pdl-box_tools)
-[![LICENSE](https://img.shields.io/badge/license-Anti%20996-blue.svg)](https://github.com/996icu/996.ICU/blob/master/LICENSE)
+[![](https://jitpack.io/v/com.gitee.clbDream/pdl-box_dimens.svg)](https://jitpack.io/#com.gitee.clbDream/pdl-box_dimens)
 
 ![](images/banner.png)
 
@@ -19,6 +18,10 @@
   ：[RecordThings-Android](https://github.com/clbDream/RecordThings-Android) ![](https://img.shields.io/github/stars/clbDream/RecordThings-Android.svg) ![](https://img.shields.io/github/forks/clbDream/RecordThings-Android.svg)
 * 常用第三方库集合<库多多>
   ：[Pdlbox_Library](https://github.com/clbDream/Pdlbox_Library) ![](https://img.shields.io/github/stars/clbDream/Pdlbox_Library.svg) ![](https://img.shields.io/github/forks/clbDream/Pdlbox_Library.svg)
+* 常用工具库集合<Tools>
+  ：[Pdlbox_Tools](https://github.com/clbDream/Pdlbox_Tools) ![](https://img.shields.io/github/stars/clbDream/Pdlbox_Tools.svg) ![](https://img.shields.io/github/forks/clbDream/Pdlbox_Tools.svg)
+* 尺寸库<Dimens>
+  ：[Pdlbox_Dimens](https://github.com/clbDream/Pdlbox_Dimens) ![](https://img.shields.io/github/stars/clbDream/Pdlbox_Dimens.svg) ![](https://img.shields.io/github/forks/clbDream/Pdlbox_Dimens.svg)
 
 ## 如何使用
 
@@ -37,6 +40,48 @@ allprojects {
 
 ```
 dependencies {
-	        implementation 'com.gitee.clbDream:pdl-box_tools:$version'
+	        implementation 'com.gitee.clbDream:pdl-box_dimens:$version'
 	}
+```
+
+3. 在XML布局文件中使用
+
+```
+    <View
+        android:id="@+id/view"
+        android:layout_width="@dimen/dp_50"
+        android:layout_height="@dimen/dp_50"
+        android:layout_marginStart="168dp"
+        android:layout_marginTop="120dp"
+        android:background="#F44336"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+```
+
+4. 在代码中使用
+
+```
+
+class MainActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        //代码中设置尺寸
+        R.dimen.dp_50
+        R.dimen.sp_10
+
+    }
+}
+```
+
+# 常见问题
+
+1. 为什么我在项目中使用时无法识别对应的尺寸,无法以R.dimen.sp_10方式使用
+   这是因为在高版本APG中默认增加了配置,会为每个库文件生成R文件,如果设置为true,就需要指定包名com.pdlbox.dimensutil.R.dimen.sp_10,如果想以R.dimen.sp_10方式使用的话,需要更改gradle.properties中以下配置为false
+```
+# Enables namespacing of each library's R class so that its R class includes only the
+# resources declared in the library itself and none from the library's dependencies,
+# thereby reducing the size of the R class for that library
+android.nonTransitiveRClass=false
 ```
